@@ -1,12 +1,21 @@
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
+import morgan from "morgan";
+import connectDB from "./config/db.js";
 
 // Configure env
 dotenv.config();
 
+// Database Config
+connectDB();
+
 // Rest Object
 const app = express();
+
+// Middleware
+app.use(morgan("dev"));
+app.use(express.json());
 
 // Rest API
 app.get("/", (req, res) => {
@@ -16,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 // PORT
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 
 // Listen App
 app.listen(PORT, () => {
