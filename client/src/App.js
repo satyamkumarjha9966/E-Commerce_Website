@@ -4,12 +4,14 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PolicyPage from "./pages/PolicyPage";
 import PageNotFoundPage from "./pages/PageNotFoundPage";
+import RegisterPage from "./pages/Auth/RegisterPage";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/policy" element={<PolicyPage />} />

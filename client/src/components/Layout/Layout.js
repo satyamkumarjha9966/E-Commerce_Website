@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
+import { Toaster } from "react-hot-toast";
 
 function Layout({ children, title, description, keywords, author, canonical }) {
   return (
@@ -15,7 +16,10 @@ function Layout({ children, title, description, keywords, author, canonical }) {
         <link rel="canonical" href={canonical} />
       </Helmet>
       <Header />
-      <main style={{ marginTop: "40px" }}>{children}</main>
+      <main style={{ marginTop: "40px", marginBottom: "20px" }}>
+        <Toaster />
+        {children}
+      </main>
       <Footer />
     </div>
   );
