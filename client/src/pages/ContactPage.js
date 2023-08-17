@@ -4,7 +4,13 @@ import { BiMailSend, BiPhoneCall, BiSupport } from "react-icons/bi";
 
 function ContactPage() {
   return (
-    <Layout>
+    <Layout
+      title={"Contact - Menverse"}
+      description={"Menverse is india most affordable mens cloths brand"}
+      author={"Menverse"}
+      keywords={"mens cloths, shirt"}
+      canonical={"http://menverse.com/contact"}
+    >
       <div className="row contactus ">
         <div className="col-md-6 ">
           <img

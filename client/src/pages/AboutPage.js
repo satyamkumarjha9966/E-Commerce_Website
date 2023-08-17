@@ -3,7 +3,13 @@ import Layout from "../components/Layout/Layout";
 
 function AboutPage() {
   return (
-    <Layout>
+    <Layout
+      title={"About - Menverse"}
+      description={"Menverse is india most affordable mens cloths brand"}
+      author={"Menverse"}
+      keywords={"mens cloths, shirt"}
+      canonical={"http://menverse.com/about"}
+    >
       <div className="row contactus ">
         <div className="col-md-6 ">
           <img
