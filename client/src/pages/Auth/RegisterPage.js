@@ -10,6 +10,7 @@ function RegisterPage() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   // Function To Hnadle Form Submit
@@ -18,7 +19,7 @@ function RegisterPage() {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        { name, email, password, phone, address }
+        { name, email, password, phone, address, answer }
       );
 
       if (res.data.success) {
@@ -36,7 +37,7 @@ function RegisterPage() {
   return (
     <Layout title={"Register - Menverse"}>
       <div className="register">
-        <div className="bg-primary-subtle p-4 shadow p-3 mb-5 bg-white rounded">
+        <div className="bg-primary-subtle p-4 shadow p-3 mb-5 mt-5 bg-white rounded">
           <h1 className="mb-3">REGISTER NOW</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
@@ -83,6 +84,18 @@ function RegisterPage() {
                 placeholder="Enter Your Address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputAnswer"
+                placeholder="What is Your City?"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
                 required
               />
             </div>

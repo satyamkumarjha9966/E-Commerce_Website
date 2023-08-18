@@ -1,49 +1,41 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "../../context/auth";
 
-function LoginPage() {
+function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
+
   const navigate = useNavigate();
-  const location = useLocation();
-  const [auth, setAuth] = useAuth();
 
   // Function To Hnadle Form Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/login`,
-        { email, password }
+        `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
+        { email, newPassword, answer }
       );
 
-      if (res.data.success) {
+      if (res && res.data.success) {
         toast.success(res.data.message);
-        setAuth({
-          ...auth,
-          user: res.data.user,
-          token: res.data.token,
-        });
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate(location.state || "/");
+        navigate("/login");
       } else {
         toast.error(res.data.message);
       }
     } catch (error) {
-      console.log("Error in User Login F > " + error);
+      console.log("Error in User Reset Password F > " + error);
       toast.error("Something Went Wrong");
     }
   };
-
   return (
-    <Layout title={"Login - Menverse"}>
+    <Layout title={"Reset Password - MenVerse"}>
       <div className="register">
         <div className="bg-primary-subtle p-4 shadow p-3 mb-5 bg-white rounded">
-          <h1 className="mb-3">LOGIN NOW</h1>
+          <h1 className="mb-3">RESET PASSWORD</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <input
@@ -61,22 +53,28 @@ function LoginPage() {
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword"
-                placeholder="Enter Your Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                id="exampleInputNewPassword"
+                placeholder="Enter Your New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
                 required
               />
             </div>
+
+            <div className="mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputAnswer"
+                placeholder="What is Your City?"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                required
+              />
+            </div>
+
             <button type="submit" className="btn btn-primary w-100 mb-3">
-              LOGIN
-            </button>
-            <button
-              type="submit"
-              className="btn btn-danger w-100"
-              onClick={() => navigate("/forgot-password")}
-            >
-              FORGOT PASSWORD
+              RESET PASSWORD
             </button>
           </form>
         </div>
@@ -85,4 +83,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default ForgotPassword;
