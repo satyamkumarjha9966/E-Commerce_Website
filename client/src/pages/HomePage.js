@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
+import { useAuth } from "../context/auth";
 
 function HomePage() {
+  const [auth, setAuth] = useAuth();
   return (
     <Layout
       title={"Menverse - Get Best Deal Here"}
@@ -11,6 +13,7 @@ function HomePage() {
       canonical={"http://menverse.com/"}
     >
       <h1>HomePage</h1>
+      <pre>{JSON.stringify(auth)}</pre>
     </Layout>
   );
 }
