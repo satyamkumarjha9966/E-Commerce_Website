@@ -4,6 +4,7 @@ import colors from "colors";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
+import categoryRoutes from "./routes/categoryRoute.js";
 import cors from "cors";
 
 // Configure env
@@ -23,6 +24,8 @@ app.use(cors());
 // Routes
 // Auth Routes
 app.use("/api/v1/auth", authRoutes);
+// Category Routes
+app.use("/api/v1/category", categoryRoutes);
 
 // Rest API
 app.get("/", (req, res) => {
