@@ -153,23 +153,27 @@ export const UpdateProductController = async (req, res) => {
           .send({ error: "Photo is Required and Should be less than 10 MB" });
     }
 
-    // Storing Product Data
+    // Updating Product Data
     const product = await productModel.findByIdAndUpdate(
       pid,
       {
         ...req.fields,
-        slug: slugify(name),
       },
       { new: true }
     );
 
-    // Storing Photo Data
+    // Updating Slug
+    if (name) {
+      product.slug = slugify(name);
+    }
+
+    // Updating Photo Data
     if (photo) {
       product.photo.data = fs.readFileSync(photo.path);
       product.photo.contentType = photo.type;
     }
 
-    // Saving Data
+    // Saving Updated Data
     await product.save();
 
     // Sending Success Response
