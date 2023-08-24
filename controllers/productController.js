@@ -213,3 +213,73 @@ export const DeleteProductController = async (req, res) => {
     });
   }
 };
+
+// Filter Product
+export const productFilterController = async (req, res) => {
+  try {
+    const { checked, radio } = req.body;
+
+    const args = {};
+
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+
+    const products = await productModel.find(args);
+
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log("Error in Fetch Product on Filter > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Fetch Product on Filter",
+      error,
+    });
+  }
+};
+
+// Total Product Count
+export const productCountController = async (req, res) => {
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      success: true,
+      total,
+    });
+  } catch (error) {
+    console.log("Error in Product Count > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Product Count",
+      error,
+    });
+  }
+};
+
+// Product List Based On Page (Load More Product)
+export const productListController = async (req, res) => {
+  try {
+    const page = req.params.page ? req.params.page : 1;
+    const perPage = 2;
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log("Error in Product List > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Product List",
+      error,
+    });
+  }
+};

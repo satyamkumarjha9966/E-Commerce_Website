@@ -82,10 +82,10 @@ function UpdateProduct() {
         productData
       );
       if (data?.success) {
-        toast.error(data?.message);
-      } else {
         toast.success("Product Updated Successfully");
         navigate("/dashboard/admin/products");
+      } else {
+        toast.error(data?.message);
       }
     } catch (error) {
       console.log("Error Come in While Updating Product" + error);
@@ -97,7 +97,9 @@ function UpdateProduct() {
   const handleDeleteProduct = async () => {
     try {
       // Handleing Accecidentely Situation
-      let answer = window.prompt("Are You Sure Want To Delete This Product?");
+      let answer = window.prompt(
+        "Are You Sure Want To Delete This Product? Type Y"
+      );
       if (!answer) return;
 
       // Method For deleting Product

@@ -6,6 +6,9 @@ import {
   GetProductController,
   GetSingleProductController,
   GetProductPhotoController,
+  productFilterController,
+  productCountController,
+  productListController,
 } from "./../controllers/productController.js";
 import { isAdmin, requireSignin } from "./../middleware/authMiddleware.js";
 
@@ -49,5 +52,14 @@ router.delete(
   isAdmin,
   DeleteProductController
 );
+
+// POST || Filter Product
+router.post("/product-filter", productFilterController);
+
+// GET || Product Count
+router.get("/product-count", productCountController);
+
+// GET || Product Per Page
+router.get("/product-list/:page", productListController);
 
 export default router;
