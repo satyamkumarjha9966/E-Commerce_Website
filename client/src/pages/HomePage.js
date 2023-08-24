@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { Checkbox, Radio } from "antd";
+import { Checkbox, Radio, Badge } from "antd";
 import { Prices } from "./../components/Prices";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
@@ -200,6 +200,10 @@ function HomePage() {
                     onClick={(e) => {
                       e.preventDefault();
                       setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
                       toast.success("Item Added To Cart");
                     }}
                   >
