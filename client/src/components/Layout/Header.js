@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-hot-toast";
+import SearchInput from "../form/SearchInput";
 
 function Header() {
   const [auth, setAuth] = useAuth();
@@ -36,6 +37,7 @@ function Header() {
             <Link className="navbar-brand font-bold" to="/">
               <RiShoppingBag3Fill /> MenVerse
             </Link>
+            <SearchInput />
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="/">

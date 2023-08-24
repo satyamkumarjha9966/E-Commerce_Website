@@ -262,7 +262,7 @@ export const productCountController = async (req, res) => {
 export const productListController = async (req, res) => {
   try {
     const page = req.params.page ? req.params.page : 1;
-    const perPage = 2;
+    const perPage = 5;
     const products = await productModel
       .find({})
       .select("-photo")
@@ -279,6 +279,58 @@ export const productListController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error in Product List",
+      error,
+    });
+  }
+};
+
+// Search Product
+export const searchProductController = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const results = await productModel
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+
+    res.json(results);
+  } catch (error) {
+    console.log("Error in Product Search > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Product Search",
+      error,
+    });
+  }
+};
+
+// Similar Product
+export const similarProductController = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+
+    const products = await productModel
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(5)
+      .populate("category");
+
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log("Error in Fetching Similar Product > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error in Fetching Similar Product",
       error,
     });
   }
