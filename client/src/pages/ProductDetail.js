@@ -76,12 +76,14 @@ function ProductDetail() {
                   src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top p-2"
                   alt={p.name}
-                  height={"100px"}
+                  height={"200px"}
                   width={"80%"}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">{p.description}....</p>
+                  <p className="card-text">
+                    {p.description.substring(0, 50)}....
+                  </p>
                   <h5 className="card-text"> ₹ {p.price}</h5>
                   <button
                     class="btn btn-primary ms-1"
