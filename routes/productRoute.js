@@ -76,11 +76,11 @@ router.get("/similar-product/:pid/:cid", similarProductController);
 // GET || Category Wise Product
 router.get("/product-category/:slug", productCategoryController);
 
-// Payments Routes
-// Braintree Token Verify
+// Payments Routes ***********************************************
+// GET || Braintree Token Verify
 router.get("/braintree/token", braintreeTokenController);
 
-// Payment Verify
+// POST || Payment Verify
 router.post("/braintree/payment", requireSignin, braintreePaymentsController);
 
 export default router;
