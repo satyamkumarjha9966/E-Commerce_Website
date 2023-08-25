@@ -232,6 +232,49 @@ export const getOrdersController = async (req, res) => {
   }
 };
 
+// Get All Orders
+export const getAllOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createAt: "-1" });
+
+    res.json(orders);
+  } catch (error) {
+    console.log("Error While Fetching All Orders > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error While Fetching All Orders",
+      error,
+    });
+  }
+};
+
+// Update Orders Status
+export const orderStatusController = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    const orders = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+
+    res.json(orders);
+  } catch (error) {
+    console.log("Error While Update Orders Status > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error While Update Orders Status",
+      error,
+    });
+  }
+};
+
 // GET || Test
 export const testcon = (req, res) => {
   res.status(200).send("Protected Route");
