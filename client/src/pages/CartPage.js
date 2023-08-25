@@ -56,7 +56,7 @@ function CartPage() {
         <div className="row">
           <div className="col-md-7 mt-2">
             {cart?.map((p) => (
-              <div className="row p-2 mt-4 card flex-row">
+              <div className="row p-2 mt-4 card flex-row" key={p._id}>
                 <div className="col-md-4">
                   <img
                     src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
