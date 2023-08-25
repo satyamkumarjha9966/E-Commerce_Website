@@ -12,6 +12,8 @@ import {
   searchProductController,
   similarProductController,
   productCategoryController,
+  braintreeTokenController,
+  braintreePaymentsController,
 } from "./../controllers/productController.js";
 import { isAdmin, requireSignin } from "./../middleware/authMiddleware.js";
 
@@ -73,5 +75,12 @@ router.get("/similar-product/:pid/:cid", similarProductController);
 
 // GET || Category Wise Product
 router.get("/product-category/:slug", productCategoryController);
+
+// Payments Routes
+// Braintree Token Verify
+router.get("/braintree/token", braintreeTokenController);
+
+// Payment Verify
+router.post("/braintree/payment", requireSignin, braintreePaymentsController);
 
 export default router;
