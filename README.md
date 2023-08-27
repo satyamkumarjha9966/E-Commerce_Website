@@ -147,3 +147,11 @@ Our API endpoints cover a wide range of functionalities, allowing you to create 
 
 ## Security-First: 
 User authentication and data security are paramount, and our backend ensures the highest level of protection.
+
+![screencapture-localhost-3000-dashboard-admin-create-product-2023-08-28-00_40_21](https://github.com/satyamkumarjha9966/E-Commerce_Website/assets/123254088/3b41a184-1628-4680-b49f-7d65b0b7cda8)
+![screencapture-localhost-3000-dashboard-admin-products-Cargo-Shorts-2023-08-28-00_40_43](https://github.com/satyamkumarjha9966/E-Commerce_Website/assets/123254088/8448697c-3881-41a2-aa04-97283dd20279)
+![screencapture-localhost-3000-dashboard-admin-orders-2023-08-28-00_41_03](https://github.com/satyamkumarjha9966/E-Commerce_Website/assets/123254088/26ba2539-4a0d-473b-8ba3-876f702fa340)
+![screencapture-localhost-3000-2023-08-28-00_37_54](https://github.com/satyamkumarjha9966/E-Commerce_Website/assets/123254088/1c4d644e-42e5-4528-b7b5-66a3bf841f49)
+![screencapture-localhost-3000-cart-2023-08-28-00_38_50](https://github.com/satyamkumarjha9966/E-Commerce_Website/assets/123254088/281ea34c-ae91-4df4-ae1d-48af966db3d0)
+![screencapture-localhost-3000-dashboard-admin-create-category-2023-08-28-00_40_01](https://github.com/satyamkumarjha9966/E-Commerce_Website/assets/123254088/a955a47f-b9ff-4d5a-b3a4-e2e39e9a2542)
+
