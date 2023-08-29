@@ -35,7 +35,7 @@ function ForgotPassword() {
     <Layout title={"Reset Password - MenVerse"}>
       <div className="register">
         <div className="bg-primary-subtle p-4 shadow p-3 mb-5 bg-white rounded">
-          <h1 className="mb-3">RESET PASSWORD</h1>
+          <h1 className="mb-3">Reset Password</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <input

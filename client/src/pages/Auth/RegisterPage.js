@@ -38,7 +38,7 @@ function RegisterPage() {
     <Layout title={"Register - Menverse"}>
       <div className="register">
         <div className="bg-primary-subtle p-4 shadow p-3 mb-5 mt-5 bg-white rounded">
-          <h1 className="mb-3">REGISTER NOW</h1>
+          <h1 className="mb-3">Register Now</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <input

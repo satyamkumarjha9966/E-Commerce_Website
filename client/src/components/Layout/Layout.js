@@ -16,7 +16,13 @@ function Layout({ children, title, description, keywords, author, canonical }) {
         <link rel="canonical" href={canonical} />
       </Helmet>
       <Header />
-      <main style={{ marginTop: "40px", marginBottom: "40px" }}>
+      <main
+        style={{
+          marginTop: "40px",
+          marginBottom: "40px",
+          minHeight: "60vh",
+        }}
+      >
         <Toaster />
         {children}
       </main>

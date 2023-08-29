@@ -16,7 +16,6 @@ function AdminOrder() {
     "Deliverd",
     "Cancel",
   ]);
-  const [changeStatus, setChangeStatus] = useState("");
   const [orders, setOrders] = useState();
   const [auth] = useAuth();
 
@@ -26,6 +25,9 @@ function AdminOrder() {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API}/api/v1/auth/all-orders`
       );
+      console.log(data);
+      console.log(data?.products);
+      console.log(data?.map((p) => console.log(p.products)));
       setOrders(data);
     } catch (error) {
       console.log("Error While Fetching Orders" + error);
@@ -60,7 +62,7 @@ function AdminOrder() {
           {orders?.map((o, i) => {
             return (
               <div className="border shadow">
-                <table className="table">
+                <table className="table table-hover">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
@@ -88,32 +90,28 @@ function AdminOrder() {
                         </Select>
                       </td>
                       <td>{o?.buyer?.name}</td>
-                      <td>{o?.payment?.success ? "Success" : "Failed"}</td>
+                      <td>{o?.payment.success ? "Success" : "Failed"}</td>
                       <td>{o?.products?.length}</td>
-                      <td>{moment(o?.createAt).fromNow()}</td>
+                      <td>{moment(o?.createdAt).fromNow()}</td>
                     </tr>
                   </tbody>
                 </table>
-                <div className="d-flex flex-row flex-wrap align-items-center justify-content-center">
-                  {o?.products?.map((p) => (
-                    <div
-                      className="row p-2 m-2 card flex-row shadow"
-                      style={{ width: "28rem" }}
-                      key={p._id}
-                    >
+                <div className="container">
+                  {o?.products?.map((p, i) => (
+                    <div className="row mb-2 p-3 card flex-row" key={p._id}>
                       <div className="col-md-4">
                         <img
                           src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                          className="card-img-top p-2"
+                          className="card-img-top"
                           alt={p.name}
-                          height={"100%"}
-                          width={"100%"}
+                          width="100px"
+                          height={"100px"}
                         />
                       </div>
-                      <div className="col-md-8 d-flex flex-column justify-content-center gap-1">
-                        <h4>{p.name}</h4>
-                        <p>{p?.description.substring(0, 40)}....</p>
-                        <h5>₹ {p.price}</h5>
+                      <div className="col-md-8">
+                        <p>{p.name}</p>
+                        <p>{p.description.substring(0, 100)}</p>
+                        <p>Price : {p.price}</p>
                       </div>
                     </div>
                   ))}

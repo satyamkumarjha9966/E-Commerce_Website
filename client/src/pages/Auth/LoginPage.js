@@ -43,7 +43,7 @@ function LoginPage() {
     <Layout title={"Login - Menverse"}>
       <div className="register">
         <div className="bg-primary-subtle p-4 shadow p-3 mb-5 bg-white rounded">
-          <h1 className="mb-3">LOGIN NOW</h1>
+          <h1 className="mb-3">Login Now</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <input

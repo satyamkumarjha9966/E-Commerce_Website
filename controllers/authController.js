@@ -212,6 +212,45 @@ export const updateProfileController = async (req, res) => {
   }
 };
 
+// Get All Users
+export const getAllUsersController = async (req, res) => {
+  try {
+    const users = await userModel.find({}).sort({ createdAt: "-1" });
+
+    res.json(users);
+  } catch (error) {
+    console.log("Error While Fetching All Users > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error While Fetching All Users",
+      error,
+    });
+  }
+};
+
+// Update User Role
+export const updateUserRoleController = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { role } = req.body;
+
+    const updateUser = await userModel.findByIdAndUpdate(
+      userId,
+      { role },
+      { new: true }
+    );
+
+    res.json(updateUser);
+  } catch (error) {
+    console.log("Error While Update User Role > " + error);
+    res.status(500).send({
+      success: false,
+      message: "Error While Update User Role",
+      error,
+    });
+  }
+};
+
 // Order Routes *************************
 // Get Order
 export const getOrdersController = async (req, res) => {
@@ -239,7 +278,7 @@ export const getAllOrdersController = async (req, res) => {
       .find({})
       .populate("products", "-photo")
       .populate("buyer", "name")
-      .sort({ createAt: "-1" });
+      .sort({ createdAt: "-1" });
 
     res.json(orders);
   } catch (error) {

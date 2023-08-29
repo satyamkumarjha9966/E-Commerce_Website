@@ -13,12 +13,21 @@ function AdminDashboard() {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <div className="card w-75 p-2">
-              <h4 className="text-center">Admin Name : {auth?.user?.name}</h4>
-              <h4 className="text-center">Admin Email : {auth?.user?.email}</h4>
-              <h4 className="text-center">
-                Admin Contact : {auth?.user?.phone}
-              </h4>
+            <div className="card w-75 p-4 shadow">
+              <h3 className="text-center text-success fw-bold">DashBoard</h3>
+              <hr />
+              <h5>
+                Admin Name :{" "}
+                <span className="fw-bold text-danger">{auth?.user?.name}</span>
+              </h5>
+              <h5>
+                Admin Email :{" "}
+                <span className="fw-bold text-danger">{auth?.user?.email}</span>
+              </h5>
+              <h5>
+                Admin Contact :{" "}
+                <span className="fw-bold text-danger">{auth?.user?.phone}</span>
+              </h5>
             </div>
           </div>
         </div>

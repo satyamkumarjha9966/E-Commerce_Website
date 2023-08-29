@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "./../components/Layout/Layout";
+import { useCart } from "../context/cart";
 
 function ProductDetail() {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [cart, setCart] = useCart();
 
   // Get All Products
   const getAllProducts = async () => {
@@ -61,7 +63,17 @@ function ProductDetail() {
           <p>{product.description}</p>
           <h4>₹ {product.price}</h4>
           <p>Category: {product?.category?.name}</p>
-          <button class="btn btn-warning ms-1">Add To Cart</button>
+          <button
+            class="btn btn-warning ms-1"
+            onClick={(e) => {
+              e.preventDefault();
+              setCart([...cart, product]);
+              localStorage.setItem("cart", JSON.stringify([...cart, product]));
+              toast.success("Item Added To Cart");
+            }}
+          >
+            Add To Cart
+          </button>
         </div>
         <hr className="mt-4" />
         <div className="row mt-2">
@@ -94,7 +106,20 @@ function ProductDetail() {
                   >
                     More Details
                   </button>
-                  <button class="btn btn-warning ms-1">Add To Cart</button>
+                  <button
+                    class="btn btn-warning ms-1"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCart([...cart, product]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, product])
+                      );
+                      toast.success("Item Added To Cart");
+                    }}
+                  >
+                    Add To Cart
+                  </button>
                 </div>
               </div>
             ))}

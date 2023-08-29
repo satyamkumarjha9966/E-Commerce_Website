@@ -7,16 +7,17 @@ function Categories() {
   const categories = useCategory();
   return (
     <Layout title={"All Category"}>
-      <div className="container">
-        <div className="row">
-          {categories?.map((c) => (
-            <div className="col-md-6 mt-4 mb-2 gx-2 gy-2" key={c._id}>
-              <Link to={`/category/${c.slug}`} className="btn btn-primary">
-                {c.name}
-              </Link>
-            </div>
-          ))}
-        </div>
+      <div className="container d-flex justify-content-center align-items-center flex-row flex-wrap">
+        {categories?.map((c) => (
+          <div
+            className="col-md-4 mt-4 mb-4 gx-2 gy-2 d-flex justify-content-center align-items-center h-25 w-25"
+            key={c._id}
+          >
+            <Link to={`/category/${c.slug}`} className="btn btn-primary p-5">
+              {c.name}
+            </Link>
+          </div>
+        ))}
       </div>
     </Layout>
   );

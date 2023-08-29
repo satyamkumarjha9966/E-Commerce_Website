@@ -127,7 +127,7 @@ function HomePage() {
 
   return (
     <Layout
-      title={"Menverse - Get Best Deal Here"}
+      title={"Man verse - Get Best Deal Here"}
       description={"Menverse is india most affordable mens cloths brand"}
       author={"Menverse"}
       keywords={"mens cloths, shirt"}

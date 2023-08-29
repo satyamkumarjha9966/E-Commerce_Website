@@ -6,7 +6,6 @@ import { toast } from "react-hot-toast";
 import SearchInput from "../form/SearchInput";
 import useCategory from "../hooks/useCategory";
 import { useCart } from "../../context/cart";
-import { Badge } from "antd";
 
 function Header() {
   const [auth, setAuth] = useAuth();
@@ -40,7 +39,7 @@ function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link className="navbar-brand font-bold" to="/">
-              <RiShoppingBag3Fill /> MenVerse
+              <RiShoppingBag3Fill /> Man Verse
             </Link>
             <SearchInput />
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -128,11 +127,12 @@ function Header() {
                 </>
               )}
               <li className="nav-item">
-                <Badge count={cart?.length} showZero>
-                  <NavLink className="nav-link" to="/cart">
-                    Cart
-                  </NavLink>
-                </Badge>
+                <NavLink className="nav-link" to="/cart">
+                  Cart{" "}
+                  <span className="bg-danger rounded-circle px-2 py-1">
+                    {cart?.length}
+                  </span>
+                </NavLink>
               </li>
             </ul>
           </div>
